@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ysundYServices</title>
+    <link rel="stylesheet" href="service.css">
+</head>
+<body>
+    <header class="header">
+            <a href="#" class="logo"><span>Y</span>SUNDAY</a>
+            <nav class="navber">
+                <a href="/index.html">Home</a>
+                <a href="#" class="active">Services</a>
+                <a href="portfolio/portfolio.html">Portfolio</a>
+                <a href="about/about.html">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <h2 class="page-title">My Services</h2>
+            
+            <div class="services-container">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">
+                        Custom websites built with modern technologies for optimal performance and user experience.
+                    </p>
+                    <ul class="service-features">
+                        <li>Responsive design for all devices</li>
+                        <li>Optimized for speed and SEO</li>
+                        <li>Modern JavaScript frameworks</li>
+                        <li>E-commerce solutions</li>
+                    </ul>
+                    <a href="#" class="service-btn">Learn More</a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">
+                        Intuitive interfaces designed to enhance user engagement and drive conversions.
+                    </p>
+                    <ul class="service-features">
+                        <li>User research & persona development</li>
+                        <li>Wireframing & prototyping</li>
+                        <li>Interactive design systems</li>
+                        <li>Usability testing</li>
+                    </ul>
+                    <a href="#" class="service-btn">Learn More</a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p class="service-description">
+                        Native and cross-platform mobile applications for iOS and Android.
+                    </p>
+                    <ul class="service-features">
+                        <li>iOS & Android app development</li>
+                        <li>React Native cross-platform</li>
+                        <li>App store optimization</li>
+                        <li>Push notification integration</li>
+                    </ul>
+                    <a href="#" class="service-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h3 class="cta-title">Ready to start your project?</h3>
+                <p class="cta-text">
+                    Let's work together to create something amazing. I'm committed to delivering exceptional results that exceed your expectations.
+                </p>
+                <a href="#" class="cta-btn">Get In Touch</a>
+            </div>
+        </div>
+        
+        <footer>
+            &copy; 2023 YSUNDAY. All Rights Reserved. | Crafted with passion and precision
+        </footer>
+    </div>
+    
+    <script>
+        // Add animations to service cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach((card, index) => {
+                // Initial state
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                // Animate in with delay
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + (index * 200));
+            });
+            
+            // Stats counter animation
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statsSection = document.querySelector('.stats-section');
+            
+            let animated = false;
+            
+            function animateStats() {
+                if (animated) return;
+                
+                const rect = statsSection.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+                
+                if (isVisible) {
+                    animated = true;
+                    
+                    statNumbers.forEach((stat, index) => {
+                        const target = parseInt(stat.textContent);
+                        let count = 0;
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        
+                        const timer = setInterval(() => {
+                            count += increment;
+                            if (count >= target) {
+                                count = target;
+                                clearInterval(timer);
+                            }
+                            
+                            stat.textContent = index === 1 ? Math.floor(count) + "%" : Math.floor(count) + "+";
+                        }, 16);
+                    });
+                }
+            }
+            
+            // Initial check
+            animateStats();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateStats);
+        });
+    </script>
+</body>
+</html>
